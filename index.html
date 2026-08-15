@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para — Personal Task Assistant | SMS Sign-Up</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         max-width: 640px; margin: 0 auto; padding: 24px; color: #1f2430; line-height: 1.55; }
+  header { border-bottom: 3px solid #3454d1; padding-bottom: 12px; margin-bottom: 24px; }
+  .brand { font-size: 1.9rem; font-weight: 700; color: #3454d1; margin: 0; }
+  .tagline { color: #5a6072; margin: 4px 0 0; }
+  h2 { font-size: 1.15rem; margin-top: 28px; }
+  form { background: #f5f7fd; border: 1px solid #d9dff2; border-radius: 8px; padding: 20px; margin-top: 12px; }
+  label { display: block; margin-bottom: 6px; font-weight: 600; }
+  input[type=tel] { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1rem;
+                    border: 1px solid #b9c2dd; border-radius: 6px; }
+  .consent { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0; font-weight: 400; }
+  .consent input { margin-top: 4px; }
+  button { background: #3454d1; color: #fff; border: 0; border-radius: 6px;
+           padding: 10px 22px; font-size: 1rem; cursor: pointer; }
+  button:hover { background: #2a44ab; }
+  #confirmation { display: none; margin-top: 14px; color: #1a7f37; font-weight: 600; }
+  .fineprint { font-size: 0.85rem; color: #5a6072; }
+  footer { margin-top: 36px; border-top: 1px solid #d9dff2; padding-top: 14px;
+           font-size: 0.9rem; color: #5a6072; }
+  footer a { color: #3454d1; }
+</style>
+</head>
+<body>
+<header>
+  <p class="brand">Para</p>
+  <p class="tagline">Personal Task Assistant &middot; operated by Sam Brody</p>
+</header>
+
+<p>Para is a personal task assistant. It sends <strong>task reminders, daily task digests,
+calendar event reminders, and task confirmations</strong> by text message (SMS) to the
+account owner who signs up below. Para does not send marketing or promotional messages,
+and messages are only sent to phone numbers registered through this form.</p>
+
+<h2>Sign up for text notifications</h2>
+<form id="optin-form">
+  <label for="phone">Mobile phone number</label>
+  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
+  <div class="consent">
+    <input type="checkbox" id="consent" name="consent" required>
+    <label for="consent" class="fineprint" style="font-weight:400">
+      I agree to receive recurring task reminder and notification text messages from
+      <strong>Para</strong> at the phone number provided above. Message frequency varies
+      (up to 10 messages per day). Message and data rates may apply. Consent is not a
+      condition of any purchase. Reply <strong>STOP</strong> to unsubscribe or
+      <strong>HELP</strong> for help at any time. See our
+      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">SMS Terms of Service</a>.
+    </label>
+  </div>
+  <button type="submit">Sign up for texts</button>
+  <p id="confirmation">You're signed up! You'll receive a welcome text shortly.
+     Reply STOP at any time to unsubscribe.</p>
+</form>
+
+<h2>How opt-in works</h2>
+<p class="fineprint">Consent is collected exclusively through the web form above: the
+account owner enters their own mobile number and checks the consent box before
+submitting. Opting out is available at any time by replying <strong>STOP</strong> to any
+message, and help is available by replying <strong>HELP</strong> or emailing
+<a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a>.</p>
+
+<footer>
+  <p>Para — Personal Task Assistant &middot; Sam Brody &middot;
+     <a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a></p>
+  <p><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">SMS Terms of Service</a></p>
+</footer>
+
+<script>
+  document.getElementById("optin-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    document.getElementById("confirmation").style.display = "block";
+  });
+</script>
+</body>
+</html>
