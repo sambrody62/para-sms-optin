@@ -11,7 +11,9 @@
   .brand { font-size: 1.9rem; font-weight: 700; color: #3454d1; margin: 0; }
   .tagline { color: #5a6072; margin: 4px 0 0; }
   h2 { font-size: 1.15rem; margin-top: 28px; }
-  form { background: #f5f7fd; border: 1px solid #d9dff2; border-radius: 8px; padding: 20px; margin-top: 12px; }
+  .cta, form { background: #f5f7fd; border: 1px solid #d9dff2; border-radius: 8px; padding: 20px; margin-top: 12px; }
+  .cta .keyword { font-size: 1.4rem; font-weight: 700; margin: 0 0 10px; }
+  .cta .keyword span { color: #3454d1; }
   label { display: block; margin-bottom: 6px; font-weight: 600; }
   input[type=tel] { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1rem;
                     border: 1px solid #b9c2dd; border-radius: 6px; }
@@ -21,24 +23,39 @@
            padding: 10px 22px; font-size: 1rem; cursor: pointer; }
   button:hover { background: #2a44ab; }
   #confirmation { display: none; margin-top: 14px; color: #1a7f37; font-weight: 600; }
-  .fineprint { font-size: 0.85rem; color: #5a6072; }
+  .fineprint { font-size: 0.9rem; color: #3a3f4d; }
+  .sample { background: #fff; border: 1px solid #d9dff2; border-left: 4px solid #3454d1;
+            border-radius: 6px; padding: 10px 14px; margin: 8px 0; font-family: ui-monospace, Menlo, monospace;
+            font-size: 0.9rem; white-space: pre-wrap; }
   footer { margin-top: 36px; border-top: 1px solid #d9dff2; padding-top: 14px;
            font-size: 0.9rem; color: #5a6072; }
-  footer a { color: #3454d1; }
+  footer a, a { color: #3454d1; }
 </style>
 </head>
 <body>
 <header>
   <p class="brand">Para</p>
-  <p class="tagline">Personal Task Assistant &middot; operated by Sam Brody</p>
+  <p class="tagline">Personal Task Assistant &middot; operated by Samuel Brody (sole proprietor)</p>
 </header>
 
-<p>Para is a personal task assistant. It sends <strong>task reminders, daily task digests,
-calendar event reminders, and task confirmations</strong> by text message (SMS) to the
-account owner who signs up below. Para does not send marketing or promotional messages,
-and messages are only sent to phone numbers registered through this form.</p>
+<p>Para is a personal task assistant operated by <strong>Samuel Brody</strong>. It sends
+<strong>task reminders, daily task digests, calendar event reminders, task confirmations,
+and replies to requests the account owner sends it</strong> by text message (SMS) from
+<strong>(856) 460-5603</strong>. Para does not send marketing or promotional messages, and it
+only texts phone numbers that have opted in using one of the two methods below.</p>
 
-<h2>Sign up for text notifications</h2>
+<h2>Opt in by text</h2>
+<div class="cta">
+  <p class="keyword">Text <span>START</span> to <span>(856) 460-5603</span></p>
+  <p class="fineprint">By texting START to (856) 460-5603 you agree to receive recurring task
+  reminder and notification text messages from <strong>Para, operated by Samuel Brody</strong>,
+  at the phone number you text from. Message frequency varies (up to 10 messages per day).
+  Message and data rates may apply. Consent is not a condition of any purchase. Reply
+  <strong>STOP</strong> to cancel at any time or <strong>HELP</strong> for help. See our
+  <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</p>
+</div>
+
+<h2>Opt in on the web</h2>
 <form id="optin-form">
   <label for="phone">Mobile phone number</label>
   <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
@@ -46,29 +63,41 @@ and messages are only sent to phone numbers registered through this form.</p>
     <input type="checkbox" id="consent" name="consent" required>
     <label for="consent" class="fineprint" style="font-weight:400">
       I agree to receive recurring task reminder and notification text messages from
-      <strong>Para</strong> at the phone number provided above. Message frequency varies
-      (up to 10 messages per day). Message and data rates may apply. Consent is not a
-      condition of any purchase. Reply <strong>STOP</strong> to unsubscribe or
-      <strong>HELP</strong> for help at any time. See our
-      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">SMS Terms of Service</a>.
+      <strong>Para, operated by Samuel Brody</strong>, at the phone number provided above.
+      Message frequency varies (up to 10 messages per day). Message and data rates may apply.
+      Consent is not a condition of any purchase. Reply <strong>STOP</strong> to cancel at any
+      time or <strong>HELP</strong> for help. See our
+      <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
     </label>
   </div>
   <button type="submit">Sign up for texts</button>
-  <p id="confirmation">You're signed up! You'll receive a welcome text shortly.
-     Reply STOP at any time to unsubscribe.</p>
+  <p id="confirmation">You're signed up! You'll receive a confirmation text shortly.
+     Reply STOP at any time to cancel.</p>
 </form>
 
-<h2>How opt-in works</h2>
-<p class="fineprint">Consent is collected exclusively through the web form above: the
-account owner enters their own mobile number and checks the consent box before
-submitting. Opting out is available at any time by replying <strong>STOP</strong> to any
-message, and help is available by replying <strong>HELP</strong> or emailing
+<h2>What happens after you opt in</h2>
+<p class="fineprint">Whether you text START or use the form, the first message you receive is a
+confirmation:</p>
+<div class="sample">Para (Samuel Brody): You are subscribed to task reminders and notifications. Msg frequency varies, up to 10/day. Msg &amp; data rates may apply. Reply HELP for help, STOP to cancel.</div>
+
+<h2>Keywords</h2>
+<p class="fineprint"><strong>STOP</strong> (also END, CANCEL, UNSUBSCRIBE, QUIT) cancels all
+messages. You receive one final confirmation:</p>
+<div class="sample">Para (Samuel Brody): You are unsubscribed and will receive no more texts from this number. Reply START to resubscribe. Help: sambrody34@gmail.com</div>
+<p class="fineprint"><strong>HELP</strong> (also INFO) returns support information:</p>
+<div class="sample">Para (Samuel Brody) task reminders. Help: sambrody34@gmail.com. Msg frequency varies, up to 10/day. Msg &amp; data rates may apply. Reply STOP to cancel.</div>
+
+<h2>How consent is handled</h2>
+<p class="fineprint">Consent is collected only through the two methods above: texting the keyword
+START to (856) 460-5603, or entering a mobile number and checking the unchecked-by-default
+consent box on this page. The consent checkbox is never pre-checked. Opt-in records are kept
+for as long as the subscription is active. Questions: email
 <a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a>.</p>
 
 <footer>
-  <p>Para — Personal Task Assistant &middot; Sam Brody &middot;
-     <a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a></p>
-  <p><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">SMS Terms of Service</a></p>
+  <p>Para — Personal Task Assistant &middot; Samuel Brody &middot;
+     <a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a> &middot; (856) 460-5603</p>
+  <p><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Service</a></p>
 </footer>
 
 <script>
