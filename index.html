@@ -15,7 +15,7 @@
   .cta .keyword { font-size: 1.4rem; font-weight: 700; margin: 0 0 10px; }
   .cta .keyword span { color: #3454d1; }
   label { display: block; margin-bottom: 6px; font-weight: 600; }
-  input[type=tel] { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1rem;
+  input[type=tel], input[type=text], input[type=email] { width: 100%; box-sizing: border-box; padding: 10px; font-size: 1rem;
                     border: 1px solid #b9c2dd; border-radius: 6px; }
   .consent { display: flex; gap: 10px; align-items: flex-start; margin: 16px 0; font-weight: 400; }
   .consent input { margin-top: 4px; }
@@ -55,24 +55,32 @@ only texts phone numbers that have opted in using one of the two methods below.<
   <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</p>
 </div>
 
-<h2>Opt in on the web</h2>
+<h2>Sign up on the web</h2>
+<p class="fineprint"><strong>Text messages are optional.</strong> You can create a Para account and
+use it fully without receiving any texts — reminders are shown in the app and sent by email
+instead. Texting is turned on only if you tick the separate box below.</p>
 <form id="optin-form">
-  <label for="phone">Mobile phone number</label>
-  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
+  <label for="name">Your name</label>
+  <input type="text" id="name" name="name" placeholder="First and last name" autocomplete="name" required>
+  <label for="email" style="margin-top:12px">Email address</label>
+  <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+  <label for="phone" style="margin-top:12px">Mobile phone number <span style="font-weight:400">(optional — only needed if you want texts)</span></label>
+  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel">
   <div class="consent">
-    <input type="checkbox" id="consent" name="consent" required>
+    <input type="checkbox" id="consent" name="consent">
     <label for="consent" class="fineprint" style="font-weight:400">
-      I agree to receive recurring task reminder and notification text messages from
-      <strong>Para, operated by Samuel Brody</strong>, at the phone number provided above.
-      Message frequency varies (up to 10 messages per day). Message and data rates may apply.
-      Consent is not a condition of any purchase. Reply <strong>STOP</strong> to cancel at any
-      time or <strong>HELP</strong> for help. See our
+      <strong>Optional:</strong> Yes, text me. I agree to receive recurring task reminder and
+      notification text messages from <strong>Para, operated by Samuel Brody</strong>, at the
+      phone number provided above. Message frequency varies (up to 10 messages per day).
+      Message and data rates may apply. Consent is not a condition of creating an account, using
+      Para, or any purchase — leave this box unchecked to use Para without texts. Reply
+      <strong>STOP</strong> to cancel at any time or <strong>HELP</strong> for help. See our
       <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.
     </label>
   </div>
-  <button type="submit">Sign up for texts</button>
-  <p id="confirmation">Thanks! You'll receive a welcome text shortly. Reply YES to that
-     text to confirm your subscription. Reply STOP at any time to cancel.</p>
+  <button type="submit">Create account</button>
+  <button type="button" id="skip-texts" style="background:#fff;color:#3454d1;border:1px solid #3454d1;margin-left:8px">Continue without texts</button>
+  <p id="confirmation"></p>
 </form>
 
 <h2>What happens after you opt in (double opt-in)</h2>
@@ -92,10 +100,13 @@ messages. You receive one final confirmation:</p>
 <div class="sample">Para (Samuel Brody) task reminders. Help: sambrody34@gmail.com. Msg frequency varies, up to 10/day. Msg &amp; data rates may apply. Reply STOP to cancel.</div>
 
 <h2>How consent is handled</h2>
-<p class="fineprint">Consent is collected only through the two methods above: texting the keyword
-START to (856) 460-5603, or entering a mobile number and checking the unchecked-by-default
-consent box on this page. The consent checkbox is never pre-checked. Opt-in records are kept
-for as long as the subscription is active. Questions: email
+<p class="fineprint">SMS consent is voluntary and separate from creating or using a Para account.
+It is collected only through the two methods above: texting the keyword START to
+(856) 460-5603, or ticking the optional, unchecked-by-default "Yes, text me" box on the
+sign-up form. The box is never pre-checked and is never required — a person who leaves it
+unchecked, or chooses "Continue without texts", still gets a full Para account and receives
+reminders in the app and by email. Opt-in records (number, date, and method) are kept for as
+long as the subscription is active. Questions: email
 <a href="mailto:sambrody34@gmail.com">sambrody34@gmail.com</a>.</p>
 
 <footer>
@@ -105,9 +116,22 @@ for as long as the subscription is active. Questions: email
 </footer>
 
 <script>
-  document.getElementById("optin-form").addEventListener("submit", function (e) {
+  var form = document.getElementById("optin-form");
+  var confirmation = document.getElementById("confirmation");
+  function finish(withTexts) {
+    confirmation.textContent = withTexts
+      ? "Thanks! Your account is set up. You'll receive a welcome text shortly - reply YES to that text to confirm your subscription. Reply STOP at any time to cancel."
+      : "Thanks! Your account is set up. No texts will be sent. You can turn on text reminders later by texting START to (856) 460-5603.";
+    confirmation.style.display = "block";
+  }
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    document.getElementById("confirmation").style.display = "block";
+    var wantsTexts = document.getElementById("consent").checked && document.getElementById("phone").value.trim() !== "";
+    finish(wantsTexts);
+  });
+  document.getElementById("skip-texts").addEventListener("click", function () {
+    document.getElementById("consent").checked = false;
+    if (form.reportValidity()) finish(false);
   });
 </script>
 </body>
